@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 96 96" role="img" aria-label="Shop logo">
+  <path d="M26 34h44l-4 34H30l-4-34Z" fill="#111111"/>
+  <path d="M34 34c0-8 6-14 14-14s14 6 14 14" fill="none" stroke="#111111" stroke-linecap="round" stroke-width="8"/>
+  <path d="M34 34c0-8 6-14 14-14s14 6 14 14" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="3.5"/>
+  <path d="M38 49h20" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="4"/>
+  <path d="M38 59h20" fill="none" stroke="#ffffff" stroke-linecap="round" stroke-width="4" opacity=".82"/>
+  <g transform="rotate(14 67 48)">
+    <rect x="60" y="38" width="14" height="20" rx="4" fill="#ffffff" stroke="#111111" stroke-width="3"/>
+    <circle cx="67" cy="43" r="2" fill="#111111"/>
+  </g>
+</svg>

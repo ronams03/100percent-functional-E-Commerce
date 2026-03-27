@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Panel</title>
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <link rel="stylesheet" href="../assets/css/admin.css">
+    <script defer src="../assets/js/favicon.js"></script>
+</head>
+<body data-brand-context="admin">
+    <div class="admin-shell" id="adminShell">
+        <aside class="sidebar" id="adminSidebar">
+            <div class="sidebar-top">
+                <a class="brand" href="./?page=dashboard">
+                    <span class="brand-mark" data-brand-mark data-brand-fallback="TA">TA</span>
+                    <span class="brand-text" data-brand-text="admin_panel_title">Inventory</span>
+                </a>
+                <button class="hamburger" id="adminSidebarToggle" type="button" aria-label="Toggle sidebar">
+                    <span style="font-size:16px;">|||</span>
+                </button>
+            </div>
+
+            <nav class="nav-list" id="adminNavList"></nav>
+
+            <div class="sidebar-footer">
+                <a class="button" id="adminCustomerViewLink" href="../?admin_preview=1">
+                    <span>Customer View</span>
+                </a>
+            </div>
+        </aside>
+
+        <div class="admin-main">
+            <header class="admin-header">
+                <div class="admin-header-copy">
+                    <h1 class="section-title" id="adminPageTitle">Dashboard</h1>
+                    <p class="muted" id="adminPageSubtitle">Operational overview and live stock status.</p>
+                </div>
+                <div class="admin-header-tools">
+                    <div class="admin-account-badge" id="adminSessionBadge"></div>
+                    <div class="inline-actions">
+                        <button class="ghost-button" type="button" id="adminNotificationsButton">
+                            Notifications
+                            <span class="notification-dot" id="adminNotificationCount">0</span>
+                        </button>
+                        <button class="ghost-button" type="button" id="adminLogoutButton">Logout</button>
+                    </div>
+                </div>
+            </header>
+
+            <main class="admin-content">
+                <div id="adminPageContent"></div>
+            </main>
+        </div>
+    </div>
+
+    <script>
+        window.APP_API_BASE = '../api/index.php';
+        window.APP_BASE_PREFIX = '../';
+        const customerViewLink = document.getElementById('adminCustomerViewLink');
+        if (customerViewLink) {
+            customerViewLink.addEventListener('click', () => {
+                try {
+                    sessionStorage.setItem('admin_customer_preview', '1');
+                } catch (error) {
+                    // Ignore storage failures and continue navigation.
+                }
+            });
+        }
+    </script>
+    <script type="module" src="../assets/js/admin.js"></script>
+</body>
+</html>

@@ -1,0 +1,12 @@
+Options -MultiViews
+RewriteEngine On
+
+# Canonicalize admin entry pages.
+RewriteCond %{THE_REQUEST} \s+(/(?:[^\s?]+/)admin/)index\.html(?:[\s?]|$) [NC]
+RewriteRule ^index\.html$ %1 [R=302,L,NE]
+
+RewriteCond %{THE_REQUEST} \s+(/(?:[^\s?]+/)admin/)login\.html(?:[\s?]|$) [NC]
+RewriteRule ^login\.html$ %1login [R=302,L,NE]
+
+# Serve clean login path within the admin directory.
+RewriteRule ^login/?$ login.html [L,NC]

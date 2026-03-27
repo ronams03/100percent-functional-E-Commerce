@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login | TikTok Admin Inventory</title>
+    <link rel="stylesheet" href="../assets/css/app.css">
+    <script defer src="../assets/js/favicon.js"></script>
+</head>
+<body data-brand-context="admin-login">
+    <div class="page-shell">
+        <header class="topbar">
+            <a class="brand" href="../">
+                <span class="brand-mark" data-brand-mark data-brand-fallback="TA">TA</span>
+                <span data-brand-text="site_name">TikTok Admin Inventory</span>
+            </a>
+            <div class="inline-actions">
+                <a class="ghost-button" href="../">Customer Site</a>
+            </div>
+        </header>
+
+        <section class="hero">
+            <div class="hero-card">
+                <h1>Admin sign-in is required before opening the dashboard.</h1>
+                <p>Use this page to log in as the system admin. The project now uses one seeded admin account and no self-registration flow.</p>
+                <div class="hero-stats">
+                    <div class="hero-stat">
+                        <span class="muted">Access Rule</span>
+                        <strong>Login First</strong>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="muted">Theme</span>
+                        <strong>Black / White</strong>
+                    </div>
+                    <div class="hero-stat">
+                        <span class="muted">Font</span>
+                        <strong>Arial</strong>
+                    </div>
+                </div>
+            </div>
+
+            <div class="hero-card">
+                <div class="panel-head">
+                    <h2 class="panel-title">Current Session</h2>
+                    <span class="pill" id="adminLoginSessionPill">Guest</span>
+                </div>
+                <div class="list" id="adminLoginSessionSummary"></div>
+            </div>
+        </section>
+
+        <main class="layout-grid">
+            <div class="stack">
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2 class="panel-title">Admin Login</h2>
+                            <p class="muted">Only the single system admin account can continue to the dashboard.</p>
+                        </div>
+                    </div>
+                    <form id="adminLoginForm" class="form-grid single">
+                        <div class="field">
+                            <label for="adminLoginEmail">Email</label>
+                            <input id="adminLoginEmail" name="email" type="email" required>
+                        </div>
+                        <div class="field">
+                            <label for="adminLoginPassword">Password</label>
+                            <input id="adminLoginPassword" name="password" type="password" required>
+                        </div>
+                        <div class="list-item">
+                            <strong>Admin Access</strong><br>
+                            <span class="muted">Use the current admin email and password configured for this installation.</span>
+                        </div>
+                        <button class="button" type="submit">Login to Admin</button>
+                    </form>
+                </section>
+            </div>
+
+            <aside class="aside-panel">
+                <section class="panel">
+                    <div class="panel-head">
+                        <div>
+                            <h2 class="panel-title">Admin Access Rule</h2>
+                            <p class="muted">There is only one admin account in this system.</p>
+                        </div>
+                    </div>
+                    <div class="list">
+                        <div class="list-item">Admin users cannot self-register anymore.</div>
+                        <div class="list-item">Additional admin accounts are disabled.</div>
+                    </div>
+                </section>
+            </aside>
+        </main>
+    </div>
+
+    <script>
+        window.APP_API_BASE = '../api/index.php';
+        window.APP_BASE_PREFIX = '../';
+    </script>
+    <script type="module" src="../assets/js/admin-login.js"></script>
+</body>
+</html>

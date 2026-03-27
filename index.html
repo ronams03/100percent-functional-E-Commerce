@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DEVORYN FROM TIKTOK </title>
+    <link rel="stylesheet" href="assets/css/app.css">
+    <script defer src="assets/js/favicon.js"></script>
+</head>
+<body data-brand-context="shop">
+    <div class="page-shell" id="shopApp">
+        <header class="topbar">
+            <a class="brand" href="#">
+                <span class="brand-mark" data-brand-mark data-brand-fallback="TA">TA</span>
+                <span data-brand-text="site_name">TikTok Admin Inventory</span>
+            </a>
+            <div class="nav-group">
+                <button class="ghost-button" type="button" data-view-trigger="shop">Shop</button>
+                <button class="ghost-button" type="button" data-view-trigger="orders">My Orders</button>
+                <button class="ghost-button" type="button" data-view-trigger="profile">Profile</button>
+                <a class="ghost-button hidden" id="shopAdminLink" href="admin/?page=dashboard">Admin Panel</a>
+                <button class="floating-cart-toggle" id="shopCartToggle" type="button" aria-label="Open cart and checkout" aria-expanded="false">
+                    <span class="floating-cart-icon">Cart</span>
+                    <span class="floating-cart-count" id="shopCartBadge">0</span>
+                </button>
+                <button class="button" type="button" id="shopAuthButton">Login / Register</button>
+                <button class="ghost-button hidden" type="button" id="shopLogoutButton">Logout</button>
+            </div>
+        </header>
+
+        <main class="layout-grid shop-layout">
+            <div class="stack">
+                <section class="panel" data-view="shop">
+                    <div class="panel-head shop-products-head">
+                        <h2 class="panel-title">Products</h2>
+                        <div class="shop-products-subrow">
+                            <p class="muted">Browse live stock-aware products and add them directly to cart.</p>
+                            <div class="toolbar shop-products-toolbar">
+                                <input id="shopSearchInput" type="search" placeholder="Search products">
+                                <select id="shopCategoryFilter">
+                                    <option value="">All categories</option>
+                                </select>
+                                <button class="button" type="button" id="shopRefreshProducts">Refresh</button>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="card-grid" id="shopProductsGrid"></div>
+                </section>
+
+                <section class="panel hidden" data-view="orders">
+                    <div class="panel-head">
+                        <div>
+                            <h2 class="panel-title">My Orders</h2>
+                            <p class="muted">Track outgoing orders, transactions, and shipment progress.</p>
+                        </div>
+                        <button class="button" type="button" id="shopRefreshOrders">Refresh Orders</button>
+                    </div>
+                    <div class="shop-stats" id="shopOrderStats"></div>
+                    <div class="list" id="shopOrdersList"></div>
+                </section>
+
+                <section class="panel hidden" data-view="profile">
+                    <div class="panel-head">
+                        <div>
+                            <h2 class="panel-title">Profile & Security</h2>
+                            <p class="muted">Update your password and review your account state.</p>
+                        </div>
+                    </div>
+                    <div class="split-panel">
+                        <div class="card profile-card">
+                            <form id="shopProfileForm" class="form-grid">
+                                <div class="field">
+                                    <label for="shopProfileFirstName">First Name</label>
+                                    <input id="shopProfileFirstName" name="first_name" type="text" required>
+                                </div>
+                                <div class="field">
+                                    <label for="shopProfileLastName">Last Name</label>
+                                    <input id="shopProfileLastName" name="last_name" type="text" required>
+                                </div>
+                                <div class="field">
+                                    <label for="shopProfileEmail">Email</label>
+                                    <input id="shopProfileEmail" name="email" type="email" required>
+                                </div>
+                                <div class="field">
+                                    <label for="shopProfilePhone">Phone</label>
+                                    <input id="shopProfilePhone" name="phone" type="text">
+                                </div>
+                                <div class="field field-full">
+                                    <label for="shopProfileRecipient">Recipient Name</label>
+                                    <input id="shopProfileRecipient" name="shipping_recipient_name" type="text">
+                                </div>
+                                <div class="field field-full">
+                                    <label for="shopProfileLine1">Address Line 1</label>
+                                    <input id="shopProfileLine1" name="shipping_address_line_1" type="text">
+                                </div>
+                                <div class="field field-full">
+                                    <label for="shopProfileLine2">Address Line 2</label>
+                                    <input id="shopProfileLine2" name="shipping_address_line_2" type="text">
+                                </div>
+                                <div class="field">
+                                    <label for="shopProfileCity">City</label>
+                                    <input id="shopProfileCity" name="shipping_city" type="text">
+                                </div>
+                                <div class="field">
+                                    <label for="shopProfileRegion">State / Region</label>
+                                    <input id="shopProfileRegion" name="shipping_state_region" type="text">
+                                </div>
+                                <div class="field">
+                                    <label for="shopProfilePostal">Postal Code</label>
+                                    <input id="shopProfilePostal" name="shipping_postal_code" type="text">
+                                </div>
+                                <div class="field">
+                                    <label for="shopProfileCountry">Country</label>
+                                    <input id="shopProfileCountry" name="shipping_country" type="text">
+                                </div>
+                                <div class="field">
+                                    <label for="shopProfileShippingPhone">Shipping Phone</label>
+                                    <input id="shopProfileShippingPhone" name="shipping_phone" type="text">
+                                </div>
+                                <button class="button field-full" type="submit">Save Profile</button>
+                            </form>
+                        </div>
+                        <div class="card profile-card">
+                            <div class="list" id="shopProfileMeta"></div>
+                            <form id="shopPasswordForm" class="form-grid single">
+                                <div class="field">
+                                    <label for="shopCurrentPassword">Current Password</label>
+                                    <input id="shopCurrentPassword" name="current_password" type="password" required>
+                                </div>
+                                <div class="field">
+                                    <label for="shopNewPassword">New Password</label>
+                                    <input id="shopNewPassword" name="new_password" type="password" required>
+                                </div>
+                                <div class="field">
+                                    <label for="shopConfirmPassword">Confirm New Password</label>
+                                    <input id="shopConfirmPassword" name="confirm_password" type="password" required>
+                                </div>
+                                <button class="button" type="submit">Change Password</button>
+                            </form>
+                        </div>
+                    </div>
+                </section>
+            </div>
+        </main>
+
+        <div class="floating-cart-overlay hidden" id="shopCartOverlay">
+            <button class="floating-cart-backdrop" id="shopCartBackdrop" type="button" aria-label="Close cart popup"></button>
+            <section class="panel floating-cart-popup" id="shopCartPopup" aria-hidden="true">
+                <div class="panel-head">
+                    <div>
+                        <h2 class="panel-title">Cart & Checkout</h2>
+                        <p class="muted">Orders deduct stock immediately after a successful checkout.</p>
+                    </div>
+                    <button class="ghost-button" id="shopCartClose" type="button">Close</button>
+                </div>
+                <div class="floating-cart-body">
+                    <div class="list" id="shopCartItems"></div>
+                    <form id="shopCheckoutForm" class="form-grid single">
+                        <div class="checkout-step-indicator">
+                            <span class="pill" data-checkout-step-label="1">1. Review</span>
+                            <span class="pill" data-checkout-step-label="2">2. Delivery & Payment</span>
+                        </div>
+
+                        <div class="checkout-step" data-checkout-step="1">
+                            <p class="muted">Review your cart first, then continue to delivery and payment details.</p>
+                            <div class="checkout-actions">
+                                <button class="button" id="shopCheckoutNext" type="button">Next</button>
+                            </div>
+                        </div>
+
+                        <div class="checkout-step hidden" data-checkout-step="2">
+                            <div class="field">
+                                <label for="checkoutRecipient">Recipient Name</label>
+                                <input id="checkoutRecipient" name="shipping_recipient_name" type="text" required>
+                            </div>
+                            <div class="field">
+                                <label for="checkoutPhone">Phone</label>
+                                <input id="checkoutPhone" name="shipping_phone" type="text">
+                            </div>
+                            <div class="field">
+                                <label for="checkoutLine1">Address Line 1</label>
+                                <input id="checkoutLine1" name="shipping_address_line_1" type="text" required>
+                            </div>
+                            <div class="field">
+                                <label for="checkoutLine2">Address Line 2</label>
+                                <input id="checkoutLine2" name="shipping_address_line_2" type="text">
+                            </div>
+                            <div class="field">
+                                <label for="checkoutCity">City</label>
+                                <input id="checkoutCity" name="shipping_city" type="text" required>
+                            </div>
+                            <div class="field">
+                                <label for="checkoutRegion">State / Region</label>
+                                <input id="checkoutRegion" name="shipping_state_region" type="text">
+                            </div>
+                            <div class="field">
+                                <label for="checkoutPostal">Postal Code</label>
+                                <input id="checkoutPostal" name="shipping_postal_code" type="text">
+                            </div>
+                            <div class="field">
+                                <label for="checkoutCountry">Country</label>
+                                <input id="checkoutCountry" name="shipping_country" type="text" required>
+                            </div>
+                            <div class="field">
+                                <label for="checkoutPaymentMethod">Payment Method</label>
+                                <select id="checkoutPaymentMethod" name="payment_method">
+                                    <option value="simulated">Simulated</option>
+                                    <option value="cash_on_delivery">Cash on Delivery</option>
+                                    <option value="bank_transfer">Bank Transfer</option>
+                                </select>
+                            </div>
+                            <div class="field">
+                                <label for="checkoutNotes">Order Notes</label>
+                                <textarea id="checkoutNotes" name="notes"></textarea>
+                            </div>
+                            <div class="checkout-actions">
+                                <button class="ghost-button" id="shopCheckoutBack" type="button">Back</button>
+                                <button class="button" id="shopCheckoutSubmit" type="submit">Place Order</button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </section>
+        </div>
+    </div>
+
+    <script>
+        window.APP_API_BASE = 'api/index.php';
+        window.APP_BASE_PREFIX = '';
+    </script>
+    <script type="module" src="assets/js/shop.js"></script>
+</body>
+</html>

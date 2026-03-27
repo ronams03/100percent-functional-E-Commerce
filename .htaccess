@@ -1,0 +1,15 @@
+Options -MultiViews
+RewriteEngine On
+
+# Canonicalize explicit HTML page requests to clean URLs.
+RewriteCond %{THE_REQUEST} \s+(/(?:[^\s?]+/)*)index\.html(?:[\s?]|$) [NC]
+RewriteRule ^index\.html$ %1 [R=302,L,NE]
+
+RewriteCond %{THE_REQUEST} \s+(/(?:[^\s?]+/)admin/)index\.html(?:[\s?]|$) [NC]
+RewriteRule ^admin/index\.html$ %1 [R=302,L,NE]
+
+RewriteCond %{THE_REQUEST} \s+(/(?:[^\s?]+/)admin/)login\.html(?:[\s?]|$) [NC]
+RewriteRule ^admin/login\.html$ %1login [R=302,L,NE]
+
+# Serve extensionless admin login URL.
+RewriteRule ^admin/login/?$ admin/login.html [L,NC]
